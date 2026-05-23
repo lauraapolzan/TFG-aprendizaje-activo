@@ -46,12 +46,14 @@ def k_medoids_sampling(X_train: np.ndarray, y_train: np.ndarray, X_test: np.ndar
         if len(z_indices) == 0:
             break
         
-        
         S, z_indices, new_idx = select_k_greedySample( X_train=X_train, x_indices=x_indices, z_indices=z_indices, k=k, M=M, metrica=metrica,  matrizVacia=matriz_vacia, new_idx=new_idx )
+        
         matriz_vacia = False
         swap = True
+        
         while swap:
             swap = False
+
             # Para cada punto z en Z, asignar z a su punto más cercano de X U S
             assigned_to = {}
             for z in z_indices:
@@ -104,15 +106,17 @@ def k_medoids_sampling(X_train: np.ndarray, y_train: np.ndarray, X_test: np.ndar
                     old_z = Z_prime[j]
 
                     # Swap temporal
-                    S[i] = old_z
-                    Z_prime[j] = old_s
+                    S_temp = S.copy()
+                    Z_prime_temp = Z_prime.copy()
+                    S_temp[i] = old_z
+                    Z_prime_temp[j] = old_s
 
                     # Calcular d con S y Z_prime modificados temporalmente
                     d = 0.0
-                    for z_aux in Z_prime:
+                    for z_aux in Z_prime_temp:
                         min_distance = float("inf")
 
-                        for s_j in S:
+                        for s_j in S_temp:
                             distance = get_distance(X_train=X_train, M=M, i=z_aux, j=s_j, metrica=metrica )
 
                             if distance < min_distance:
@@ -121,18 +125,17 @@ def k_medoids_sampling(X_train: np.ndarray, y_train: np.ndarray, X_test: np.ndar
                         d += min_distance
 
                     if d < d_estrella:
-                        # Se mantiene el swap y se actualiza Z con el cambio de s y z
+                        # Aceptar el swap
+                        S[i] = old_z
+                        Z_prime[j] = old_s
+
                         z_indices = z_indices[z_indices != old_z]
                         z_indices = np.append(z_indices, old_s)
 
                         d_estrella = d
                         swap = True
-                    #    break
+                        #break
 
-                    else:
-                        # Deshacer el swap temporal
-                        S[i] = old_s
-                        Z_prime[j] = old_z
 
                 #if swap:
                 #    break
