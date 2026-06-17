@@ -1,0 +1,2 @@
+mse,rmse,mae,r2,pearson_r,n_estimators,random_state,train_shape,test_shape,dataset,reduced_train_path,reduced_test_path
+0.2507513486349381,0.5007507849568866,0.39150965731569,0.5052597105681491,0.7165451259431943,100,0,"(2113, 20)","(529, 20)",MDR1_ER,../data/reduced_datasets\ADME_MDR1_ER_train_feat_top20.csv,../data/reduced_datasets\ADME_MDR1_ER_test_feat_top20.csv

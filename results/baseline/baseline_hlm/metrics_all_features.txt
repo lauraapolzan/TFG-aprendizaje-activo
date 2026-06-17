@@ -1,0 +1,10 @@
+mse: 0.2419392803878578
+rmse: 0.4918732360963115
+mae: 0.39128062305016187
+r2: 0.36866405788053924
+pearson_r: 0.6082132493066916
+n_estimators: 100
+random_state: 0
+train_shape: (2469, 1340)
+test_shape: (618, 1340)
+dataset: HLM

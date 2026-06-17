@@ -1,0 +1,10 @@
+mse: 0.3841708739319243
+rmse: 0.6198151933697046
+mae: 0.43316794251034485
+r2: 0.3106469148253509
+pearson_r: 0.567727224515958
+n_estimators: 100
+random_state: 0
+train_shape: (1738, 1340)
+test_shape: (435, 1340)
+dataset: Sol

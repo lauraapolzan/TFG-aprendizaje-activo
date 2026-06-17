@@ -1,0 +1,10 @@
+mse: 0.254921203754054
+rmse: 0.50489722098072
+mae: 0.39795590961501476
+r2: 0.5443108200172952
+pearson_r: 0.7517418639546205
+n_estimators: 100
+random_state: 0
+train_shape: (1446, 1340)
+test_shape: (362, 1340)
+dataset: hPPB

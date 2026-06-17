@@ -1,0 +1,12 @@
+mse: 0.2636454438688485
+rmse: 0.5134641602574113
+mae: 0.40531452200647256
+r2: 0.31202223787883754
+pearson_r: 0.563105240766729
+n_estimators: 100
+random_state: 0
+train_shape: (2469, 20)
+test_shape: (618, 20)
+dataset: HLM
+reduced_train_path: ../data/reduced_datasets\ADME_HLM_train_feat_top20.csv
+reduced_test_path: ../data/reduced_datasets\ADME_HLM_test_feat_top20.csv

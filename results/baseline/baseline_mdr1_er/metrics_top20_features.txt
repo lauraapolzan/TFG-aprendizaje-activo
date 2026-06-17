@@ -1,0 +1,12 @@
+mse: 0.2507513486349381
+rmse: 0.5007507849568866
+mae: 0.39150965731569
+r2: 0.5052597105681491
+pearson_r: 0.7165451259431943
+n_estimators: 100
+random_state: 0
+train_shape: (2113, 20)
+test_shape: (529, 20)
+dataset: MDR1_ER
+reduced_train_path: ../data/reduced_datasets\ADME_MDR1_ER_train_feat_top20.csv
+reduced_test_path: ../data/reduced_datasets\ADME_MDR1_ER_test_feat_top20.csv

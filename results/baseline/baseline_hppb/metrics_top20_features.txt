@@ -1,0 +1,12 @@
+mse: 0.259924879770122
+rmse: 0.5098282845920987
+mae: 0.39453034499717093
+r2: 0.5353664050879628
+pearson_r: 0.7379333971704222
+n_estimators: 100
+random_state: 0
+train_shape: (1446, 20)
+test_shape: (362, 20)
+dataset: hPPB
+reduced_train_path: ../data/reduced_datasets\ADME_hPPB_train_feat_top20.csv
+reduced_test_path: ../data/reduced_datasets\ADME_hPPB_test_feat_top20.csv

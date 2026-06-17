@@ -1,0 +1,10 @@
+mse: 0.24849461040259566
+rmse: 0.4984923373559474
+mae: 0.3912160598487713
+r2: 0.5097123260069858
+pearson_r: 0.7261946346950066
+n_estimators: 100
+random_state: 0
+train_shape: (2113, 1340)
+test_shape: (529, 1340)
+dataset: MDR1_ER

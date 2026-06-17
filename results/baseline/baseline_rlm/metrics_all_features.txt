@@ -1,0 +1,10 @@
+mse: 0.3309123342587846
+rmse: 0.5752498016155978
+mae: 0.4535661088216038
+r2: 0.42969606943682037
+pearson_r: 0.6574488820228857
+n_estimators: 100
+random_state: 0
+train_shape: (2443, 1340)
+test_shape: (611, 1340)
+dataset: RLM

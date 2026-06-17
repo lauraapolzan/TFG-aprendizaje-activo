@@ -1,0 +1,2 @@
+mse,rmse,mae,r2,pearson_r,n_estimators,random_state,train_shape,test_shape,dataset,reduced_train_path,reduced_test_path
+0.39873755515936526,0.6314566930196918,0.43406331420689664,0.28450858074989605,0.5347275691002866,100,0,"(1738, 20)","(435, 20)",Sol,../data/reduced_datasets\ADME_Sol_train_feat_top20.csv,../data/reduced_datasets\ADME_Sol_test_feat_top20.csv

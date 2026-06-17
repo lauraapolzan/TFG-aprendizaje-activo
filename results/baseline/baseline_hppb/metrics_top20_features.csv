@@ -1,0 +1,2 @@
+mse,rmse,mae,r2,pearson_r,n_estimators,random_state,train_shape,test_shape,dataset,reduced_train_path,reduced_test_path
+0.259924879770122,0.5098282845920987,0.39453034499717093,0.5353664050879628,0.7379333971704222,100,0,"(1446, 20)","(362, 20)",hPPB,../data/reduced_datasets\ADME_hPPB_train_feat_top20.csv,../data/reduced_datasets\ADME_hPPB_test_feat_top20.csv

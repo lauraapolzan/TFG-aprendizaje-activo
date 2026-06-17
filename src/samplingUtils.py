@@ -8,14 +8,13 @@ from scipy.stats import pearsonr
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import RobustScaler
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+from config import RANDOM_STATE, N_ESTIMATORS, BASE_PATH
 
-RANDOM_STATE = 0
-N_ESTIMATORS = 100 
 
 def get_distance(X_train: np.ndarray, M: np.ndarray, i: int, j: int, metrica: str) -> float:
     """
     Devuelve la distancia entre dos puntos.
-    Si la distancia no está calculada en la matriz M, la calcula y la guarda.
+    Si la distancia no está calculada en la matriz M, se calcula y se guarda.
     
     Paramétros:
         X_train: conjunto de datos de entrenamiento.
@@ -24,6 +23,8 @@ def get_distance(X_train: np.ndarray, M: np.ndarray, i: int, j: int, metrica: st
         j: índice del segundo punto.
         metrica: métrica a utilizar para calcular la distancia.
     
+    Devuelve:
+        La distancia entre los puntos i y j.
     """
     if np.isnan(M[i, j]):
         dist = pairwise_distances(X_train[[i]], X_train[[j]],  metric=metrica)[0][0]
@@ -84,37 +85,57 @@ def train_and_evaluate(X_train: np.ndarray, y_train: np.ndarray, X_test: np.ndar
         "pearson_r": pearson_r
     }
 
+def get_baseline_value(dataset_name: str, metric_name: str) -> float | None:
+    """
+    Devuelve el valor de una métrica del modelo base con 20 features
+    para un dataset concreto.
+    """
+    baseline_path = f"{BASE_PATH}/baseline_{dataset_name.lower()}/metrics_top20_features.txt"
 
-def save_plot( results_df: pd.DataFrame, x_col: str, y_col: str, title: str, output_path: str, method_label: str, baseline_value: float | None = None, baseline_label: str = "Baseline" ) -> None:
+    try:
+        with open(baseline_path, "r", encoding="utf-8") as f:
+            for line in f:
+                if ":" in line:
+                    key, value = line.split(":", 1)
+
+                    if key.strip() == metric_name:
+                        try:
+                            return float(value.strip())
+                        except ValueError:
+                            return None
+    except FileNotFoundError:
+        print(f"No se ha encontrado el baseline para {dataset_name}: {baseline_path}")
+        return None
+
+    return None
+
+def save_plot(results_df: pd.DataFrame, x_col: str, y_col: str, title: str, output_path: str, method_label: str, 
+                show_baseline: bool = False, dataset_name: str | None = None ) -> None:
     """
     Guarda un gráfico de evolución de una métrica concreta.
     En el eje X se representa el número de muestras seleccionadas.
     En el eje Y se representa la métrica indicada.
-
-    Parámetros:
-        results_df: DataFrame con los resultados.
-        x_col: nombre de la columna para el eje X.
-        y_col: nombre de la columna para el eje Y.
-        title: título del gráfico.
-        output_path: ruta donde se guardará el gráfico.
-        method_label: nombre del método que aparece en la leyenda.
-        baseline_value: valor de referencia opcional.
-        baseline_label: etiqueta de la línea de referencia.
     """
-
+    
     plt.figure(figsize=(8, 5))
-    plt.plot(results_df[x_col], results_df[y_col], marker="o", label=method_label)
+    plt.plot(results_df[x_col], results_df[y_col], color="green", marker="o", markersize=3, markevery=20, linewidth=1.2, label=method_label)
 
-    if baseline_value is not None:
-        plt.axhline(  y=baseline_value, color="red", linestyle="--", label=baseline_label )
+    if show_baseline:
+        if dataset_name is None:
+            raise ValueError("Para mostrar el baseline se debe indicar dataset_name.")
+
+        baseline_value = get_baseline_value(dataset_name, y_col)
+
+        if baseline_value is not None:
+            plt.axhline(y=baseline_value, color="red", linestyle="--", linewidth=1.2, label="Baseline" )
 
     plt.xlabel("Número de muestras de entrenamiento")
     plt.ylabel(y_col)
     plt.title(title)
-    plt.grid(True)
+    plt.grid(True, linewidth=0.5, alpha=0.5)
     plt.legend()
     plt.tight_layout()
-    plt.savefig(output_path)
+    plt.savefig(output_path, dpi=300)
     plt.close()
 
 

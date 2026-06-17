@@ -1,0 +1,12 @@
+mse: 0.34648504310918726
+rmse: 0.5886298014110288
+mae: 0.45976693221276593
+r2: 0.4028576105839832
+pearson_r: 0.6348006894444638
+n_estimators: 100
+random_state: 0
+train_shape: (2443, 20)
+test_shape: (611, 20)
+dataset: RLM
+reduced_train_path: ../data/reduced_datasets\ADME_RLM_train_feat_top20.csv
+reduced_test_path: ../data/reduced_datasets\ADME_RLM_test_feat_top20.csv

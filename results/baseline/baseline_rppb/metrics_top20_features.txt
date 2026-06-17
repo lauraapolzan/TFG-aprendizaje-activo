@@ -1,0 +1,12 @@
+mse: 0.28960120159796937
+rmse: 0.5381460783077113
+mae: 0.424525625608971
+r2: 0.4816505464793237
+pearson_r: 0.6974345019115354
+n_estimators: 100
+random_state: 0
+train_shape: (708, 20)
+test_shape: (177, 20)
+dataset: rPPB
+reduced_train_path: ../data/reduced_datasets\ADME_rPPB_train_feat_top20.csv
+reduced_test_path: ../data/reduced_datasets\ADME_rPPB_test_feat_top20.csv
