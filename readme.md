@@ -45,7 +45,7 @@ Por ejemplo:
 - python greedySampling_minDist.py
 - python k_medoidsSampling.py
 
-También se pueden generar las gráficas y tablas ejecutando los scripts de la carpeta `plots`:
+También se pueden generar las gráficas y tablas ejecutando los scripts:
 
 - python plots/generateComparisonPlots.py
 - python plots/generateDatasetPlots.py
