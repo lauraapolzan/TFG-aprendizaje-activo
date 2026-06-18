@@ -31,7 +31,6 @@ Para poder ejecutar los métodos y volver a generar los resultados, es necesario
 - scikit-learn
 - scipy
 
-se pueden instalar con: pip install numpy pandas matplotlib scikit-learn scipy
 
 ## Ejecución de los métodos
 
@@ -53,3 +52,10 @@ También se pueden generar las gráficas y tablas ejecutando los scripts de la c
 - python plots/generateTables.py
 
 Los parámetros principales de ejecución, como los datasets utilizados, el número inicial de muestras, el tamaño del lote, la métrica de distancia o las rutas de salida, se pueden modificar en el fichero `config.py`.
+
+Por defecto los parametros estan configurados como los de la experimentación del TFG:
+
+### Parámetros de muestreo
+INITIAL_SIZE = 50
+BATCH_SIZE = 5
+DISTANCE_METRIC = "euclidean"
