@@ -56,6 +56,6 @@ Los parámetros principales de ejecución, como los datasets utilizados, el núm
 Por defecto los parametros estan configurados como los de la experimentación del TFG:
 
 ### Parámetros de muestreo
-INITIAL_SIZE = 50
-BATCH_SIZE = 5
-DISTANCE_METRIC = "euclidean"
+- INITIAL_SIZE = 50
+- BATCH_SIZE = 5
+- DISTANCE_METRIC = "euclidean"
