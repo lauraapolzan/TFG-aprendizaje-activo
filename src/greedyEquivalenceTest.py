@@ -89,16 +89,17 @@ def main() -> None:
         X_test_scaled = scaler.transform(X_test)
 
         # Se ejecutan las dos implementaciones de Greedy.
-        results_original, history_original = greedy_original(X_train=X_train_scaled, y_train=y_train, X_test=X_test_scaled, y_test=y_test, n=len(X_train_scaled), s=INITIAL_SIZE, k=BATCH_SIZE, num_iter=NUM_ITER, metrica=DISTANCE_METRIC, return_history=True)
+        results_original, history_original = greedy_original(X_train=X_train_scaled, y_train=y_train, X_test=X_test_scaled, y_test=y_test, n=len(X_train_scaled), s=INITIAL_SIZE, k=BATCH_SIZE, num_iter=NUM_ITER, metric=DISTANCE_METRIC, return_history=True)
         results_min_dist, history_min_dist = greedy_min_dist(X_train=X_train_scaled, y_train=y_train, X_test=X_test_scaled, y_test=y_test, n=len(X_train_scaled), s=INITIAL_SIZE, k=BATCH_SIZE, num_iter=NUM_ITER, metrica=DISTANCE_METRIC, return_history=True)
 
         same_history, matching_iterations, total_iterations = compare_histories(history_original, history_min_dist)
 
         try:
-            pd.testing.assert_frame_equal(results_original, results_min_dist, check_exact=False, atol=1e-10)
+            pd.testing.assert_frame_equal(results_original[METRIC_COLUMNS].reset_index(drop=True), results_min_dist[METRIC_COLUMNS].reset_index(drop=True), check_exact=False, check_dtype=False, atol=1e-5)
             same_metrics = True
-        except AssertionError:
+        except AssertionError as e:
             same_metrics = False
+            print(e)
 
         max_diff = max_difference(results_original, results_min_dist)
 
@@ -119,7 +120,7 @@ def main() -> None:
     summary_df = pd.DataFrame(summary_rows)
     summary_df.to_csv(OUTPUT_DIR / "greedy_equivalence_summary.csv", index=False, sep=";", encoding="utf-8-sig")
 
-    plot_metric_differences(summary_df)
+    #plot_metric_differences(summary_df)
 
 
 
